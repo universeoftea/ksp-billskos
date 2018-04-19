@@ -1,0 +1,10 @@
+0 - Pilot or Manual control
+1 - 
+
+10 - Spaceship prelaunch, booster stage in control of countdown
+11 - Spaceship flying, booster stage in control
+12 - Spaceship suborbital, waiting for circularization at Ap
+
+100 - In orbit
+101 - Circularizing at Ap
+
