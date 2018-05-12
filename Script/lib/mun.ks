@@ -1,5 +1,4 @@
 // Create and execute a node doing a transfer to the mun
-// TODO: Create and execute a circularization burn at the mun
 
 set deltaV to 838. //From LKO 100km to LMO 10km
 set targang to 111.
@@ -10,8 +9,8 @@ if SHIP:GEOPOSITION:lng < 0 {
 } else {
 	lock shippos to SHIP:GEOPOSITION:lng.
 }
-if BODY("Mun"):GEOPOSITON:lng < 0 {
-	lock munpos to -BODY("Mun"):GEOPOSITON:lng.
+if BODY("Mun"):GEOPOSITION:lng < 0 {
+	lock munpos to -BODY("Mun"):GEOPOSITION:lng.
 } else {
 	lock munpos to BODY("Mun"):GEOPOSITION:lng.
 }
@@ -29,6 +28,6 @@ logadd("Time to burn at " + targang + " degrees is: " + timetoang).
 set H1Node to NODE(TIME:SECONDS+timetoang,0,0,deltaV).
 add H1Node.
 
-runpath("0:/lib/node_exec.ks")
-
-
+// TODO: Wait for SOI change, timewarp?
+// runpath("0:/lib/node_circ.ks","pe").
+// runpath("0:/lib/node_exec.ks").
