@@ -15,6 +15,10 @@ if BODY("Mun"):GEOPOSITION:lng < 0 {
 	lock munpos to BODY("Mun"):GEOPOSITION:lng.
 }
 lock currentang to munpos - shippos.
+if  currentang < 150 {
+	logadd("We are too close to prepare for burn, waiting one orbit").
+	wait until currentang > 150.
+}
 
 logadd("Current burnang is: " + round(currentang)).
 logadd("Wating for ang to become < 200").
