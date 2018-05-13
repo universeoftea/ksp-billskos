@@ -38,8 +38,4 @@ IF SHIP:STATUS = "PRELAUNCH" {
 	launch().
 } ELSE {
 	PRINT "Ship is participating in unknown activities.".
-	runoncepath("lib/ship_monitor.ks").
-	copypath("0:/lib/mun.ks","lib/").
-	runpath("lib/mun.ks").
-	runpath("lib/node_exec.ks").
 }

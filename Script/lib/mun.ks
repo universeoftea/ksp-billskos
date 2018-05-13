@@ -1,33 +1,35 @@
 // Create and execute a node doing a transfer to the mun
 
 set deltaV to 838. //From LKO 100km to LMO 10km
-set targang to 111.
+set targAng to 111.
 
 // Akward way of converting longitude to an absolute value
 if SHIP:GEOPOSITION:lng < 0 {
-	lock shippos to -SHIP:GEOPOSITION:lng.
+	lock shipLNG to -SHIP:GEOPOSITION:lng.
 } else {
-	lock shippos to SHIP:GEOPOSITION:lng.
+	lock shipLNG to SHIP:GEOPOSITION:lng.
 }
 if BODY("Mun"):GEOPOSITION:lng < 0 {
-	lock munpos to -BODY("Mun"):GEOPOSITION:lng.
+	lock munLNG to -BODY("Mun"):GEOPOSITION:lng.
 } else {
-	lock munpos to BODY("Mun"):GEOPOSITION:lng.
+	lock munLNG to BODY("Mun"):GEOPOSITION:lng.
 }
-lock currentang to munpos - shippos.
-if  currentang < 150 {
+lock relAng to munLNG - shipLNG.
+
+//Wait until 150 < relAng < 200
+if  relAng < 150 {
 	logadd("We are too close to prepare for burn, waiting one orbit").
-	wait until currentang > 150.
+	wait until relAng > 150.
 }
 
-logadd("Current burnang is: " + round(currentang)).
+logadd("Current burnang is: " + round(relAng)).
 logadd("Wating for ang to become < 200").
-wait until currentang < 200.
-logadd("Current burnang is: " + round(currentang)).
+wait until relAng < 200.
+logadd("Current burnang is: " + round(relAng)).
 
 // get time to ang in s
-set timetoang to ((currentang - targang) * constant:pi / 180 ) / sqrt( ( ship:body:mass * constant:g / ship:orbit:semimajoraxis ^ 3)).
-logadd("Time to burn at " + targang + " degrees is: " + timetoang).
+set timetoang to ((relAng - targAng) * constant:pi / 180 ) / sqrt( ( ship:body:mass * constant:g / ship:orbit:semimajoraxis ^ 3)).
+logadd("Time to burn at " + targAng + " degrees is: " + timetoang).
 
 set H1Node to NODE(TIME:SECONDS+timetoang,0,0,deltaV).
 add H1Node.
