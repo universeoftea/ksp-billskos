@@ -1,31 +1,35 @@
 // Create and execute a node doing a transfer to the mun
 
-set deltaV to 838. //From LKO 100km to LMO 10km
+set deltaV to 837.6. //From LKO 100km to LMO 10km 138m/s?
 set targAng to 111.
-
-// Akward way of converting longitude to an absolute value
-if SHIP:GEOPOSITION:lng < 0 {
-	lock shipLNG to -SHIP:GEOPOSITION:lng.
-} else {
-	lock shipLNG to SHIP:GEOPOSITION:lng.
+function setgeo {
+	// Akward way of converting longitude to an absolute value
+	if SHIP:GEOPOSITION:lng < 0 {
+		set shipLNG to 360+SHIP:GEOPOSITION:lng.
+	} else {
+		set shipLNG to SHIP:GEOPOSITION:lng.
+	}
+	if BODY("Mun"):GEOPOSITION:lng < 0 {
+		set munLNG to 360+BODY("Mun"):GEOPOSITION:lng.
+	} else {
+		set munLNG to BODY("Mun"):GEOPOSITION:lng.
+	}
+	if munLNG-shipLNG < 0 {
+		set relang to 360 - shipLNG + munLNG.
+	} else {
+		set relAng to munLNG - shipLNG.
+	}
 }
-if BODY("Mun"):GEOPOSITION:lng < 0 {
-	lock munLNG to -BODY("Mun"):GEOPOSITION:lng.
-} else {
-	lock munLNG to BODY("Mun"):GEOPOSITION:lng.
-}
-lock relAng to munLNG - shipLNG.
+setgeo().
+logadd("Relative angle is: " + round(relAng)).
+printshipstatus().
 
-//Wait until 150 < relAng < 200
-if  relAng < 150 {
-	logadd("We are too close to prepare for burn, waiting one orbit").
-	wait until relAng > 150.
-}
-
-logadd("Current burnang is: " + round(relAng)).
-logadd("Wating for ang to become < 200").
-wait until relAng < 200.
-logadd("Current burnang is: " + round(relAng)).
+until relAng > 130 {
+	wait 1.
+	setgeo().
+	logadd("Relative angle is: " + round(relAng)).
+	printshipstatus().
+}	
 
 // get time to ang in s
 set timetoang to ((relAng - targAng) * constant:pi / 180 ) / sqrt( ( ship:body:mass * constant:g / ship:orbit:semimajoraxis ^ 3)).
