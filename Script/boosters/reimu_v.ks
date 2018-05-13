@@ -116,7 +116,9 @@ function launch {
 	logadd("Copying files needed for landing").
 	printshipstatus().
 	copypath("0:/boosters/reimu_v_landing.ks","").
-	runpath("reimu_v_landing").
+	logadd("Landing script will start on reload").
+	logadd("Have a nice flight").
+	printshipstatus().
 }
 
 launch().
