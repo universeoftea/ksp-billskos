@@ -18,9 +18,8 @@ function launch {
 	PRINT "Ship is on internal power.".
 	PRINT "Letting the booster do its job.".
 	
-	WAIT UNTIL SHIP:ALTITUDE > 70000.
 	WAIT UNTIL SHIP:STATUS = "ORBITING".
-	wait 20.
+	wait 30.
 	resetshipstate().
 	SET SHIP:NAME TO "Chen III".
 	

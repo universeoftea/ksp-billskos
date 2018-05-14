@@ -12,6 +12,8 @@ IF SHIP:NAME:CONTAINS("Reimu IV") AND SHIP:STATUS = "PRELAUNCH" {
 	runpath("reimu_v.ks").
 } ELSE IF SHIP:NAME("Reimu V Booster") AND SHIP:STATUS = "ORBITING" {
 	runpath("reimu_v_landing.ks").
+} ELSE IF SHIP:NAME("Reimu VH Booster") AND SHIP:STATUS = "ORBITING" {
+	runpath("reimu_v_landing.ks").
 } ELSE {
 	PRINT "Unknown shiptype/launcher".
 	PRINT "Will not boot any script".

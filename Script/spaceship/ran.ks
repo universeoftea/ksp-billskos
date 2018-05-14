@@ -27,7 +27,7 @@ function launch {
 	BRAKES OFF.
 	
 	WAIT UNTIL SHIP:STATUS = "ORBITING".
-	WAIT 10.
+	WAIT 30.
 	PRINT "Ran III computer is now taking control.".
 	resetshipstate().
 	
