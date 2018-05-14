@@ -20,13 +20,18 @@ SAS OFF.
 LOCK shipPos TO SHIP:GEOPOSITION.
 
 LOCK STEERING TO RETROGRADE.
+//Timewarp
+if shipPos:LNG < 90 or shipPos:LNG > deorbLng + 2
+	set warpmode to "RAILS".
+	set warp to 50.
+	wait until shipPos:LNG > 90 and shipPos:LNG < deorbLng.
+	set warp to 0.
+
 WAIT UNTIL shipPos:LNG > deorbLng AND shipPos:LNG < deorbLng + 2.
 
 LOCK THROTTLE TO 1.
 WAIT UNTIL SHIP:PERIAPSIS < deorbPe.
 LOCK THROTTLE TO 0.
-
-BRAKES ON.  
 
 //Timewarp
 wait 5.

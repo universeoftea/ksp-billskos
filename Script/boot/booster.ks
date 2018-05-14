@@ -10,9 +10,9 @@ IF SHIP:NAME:CONTAINS("Reimu IV") AND SHIP:STATUS = "PRELAUNCH" {
 } ELSE IF SHIP:NAME:CONTAINS("Reimu V") AND SHIP:STATUS = "PRELAUNCH" {
 	copypath("0:/boosters/reimu_v.ks","").
 	runpath("reimu_v.ks").
-} ELSE IF SHIP:NAME("Reimu V Booster") AND SHIP:STATUS = "ORBITING" {
+} ELSE IF SHIP:NAME = "Reimu V Booster" AND SHIP:STATUS = "ORBITING" {
 	runpath("reimu_v_landing.ks").
-} ELSE IF SHIP:NAME("Reimu VH Booster") AND SHIP:STATUS = "ORBITING" {
+} ELSE IF SHIP:NAME = "Reimu VH Booster" AND SHIP:STATUS = "ORBITING" {
 	runpath("reimu_v_landing.ks").
 } ELSE {
 	PRINT "Unknown shiptype/launcher".

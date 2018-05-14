@@ -1,3 +1,4 @@
+WAIT UNTIL SHIP:UNPACKED.
 PRINT "This is the support computer.".
 PRINT "Checking status of vessel.".
 
