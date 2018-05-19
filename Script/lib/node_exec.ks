@@ -14,6 +14,18 @@ logadd("Estimated burn time: " + round(targBurnTime)).
 logadd("Time to node is: " + round(nodeEta)).
 lock steering to execnode:deltav.
 
+if nodeEta - targBurnTime/2 > 60 {
+	logadd("Eta is more than 60s").
+	logadd("Activating warp").
+	set warpmode to "RAILS".
+	set warp to 20.
+}
+until nodeEta - targBurnTime / 2 < 60 {
+	printshipstatus().
+	wait 0.5.
+}
+set warp to 0.
+
 until nodeEta < targBurnTime / 2 {
 	printshipstatus().
 	wait 0.5.

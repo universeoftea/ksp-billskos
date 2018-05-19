@@ -79,19 +79,27 @@ function launch {
 		WAIT 0.5.
 	}
 	
+	UNTIL SHIP:APOAPSIS > 90000 {
+		printshipstatus().
+		wait 0.3.
+	}
 	UNTIL SHIP:APOAPSIS > 100000 {
 		printshipstatus().
+		lock THROTTLE to 0.5.
 		wait 0.3.
 	}
 	resetshipstate().
 	LOCK STEERING TO SHIP:PROGRADE.
 	
 	logadd("Coasting to Apoapsis.").
+	set warpmode to "PHYSICS".
+	set warp to 2.
 	UNTIL SHIP:ALTITUDE > 70000 {
 		printshipstatus().
 		wait 0.5.
 	}
-	WAIT 1.
+	set warp to 0.
+	WAIT 3.
 	
 	runpath("lib/node_circ.ks","ap").
 	runpath("lib/node_exec.ks").
