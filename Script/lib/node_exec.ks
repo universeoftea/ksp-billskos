@@ -14,13 +14,13 @@ logadd("Estimated burn time: " + round(targBurnTime)).
 logadd("Time to node is: " + round(nodeEta)).
 lock steering to execnode:deltav.
 
-if nodeEta - targBurnTime/2 > 60 {
-	logadd("Eta is more than 60s").
+if nodeEta - targBurnTime/2 > 90 {
+	logadd("Eta is more than 90s").
 	logadd("Activating warp").
 	set warpmode to "RAILS".
 	set warp to 20.
 }
-until nodeEta - targBurnTime / 2 < 60 {
+until nodeEta - targBurnTime / 2 < 90 {
 	printshipstatus().
 	wait 0.5.
 }
@@ -45,7 +45,7 @@ wait until nodeDeltaV < 0.55555.
 
 //Same, but 0.1m/ss for the last bit
 lock THROTTLE TO min(1,0.1/max_acc).
-wait until nodeDeltaV < 0.1.
+wait until nodeDeltaV < 0.2.
 lock THROTTLE TO 0.
 unlock STEERING.
 remove execnode.

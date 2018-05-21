@@ -10,6 +10,10 @@ ELSE IF SHIP:NAME:CONTAINS("Chen ") {
 	copypath("0:/spaceship/chen_3.ks","").
 	runpath("chen_3.ks").
 }
+ELSE IF SHIP:NAME:CONTAINS("Koakuma") {
+	copypath("0:/spaceship/koakuma.ks","").
+	runpath("koakuma.ks").
+}
 ELSE IF SHIP:NAME:CONTAINS("Wriggle I") {
 	copypath("0:/spaceship/wriggle.ks","").
 	run wriggle.

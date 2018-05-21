@@ -4,44 +4,37 @@ function resetshipstate {
 	BRAKES OFF.
 	SET SHIP:CONTROL:PILOTMAINTHROTTLE TO 0.
 	UNLOCK THROTTLE.
-	SET THROTTLE TO 0.
-}
-function pilotmode {
-	SET SHIP:CONTROL:PILOTMAINTHROTTLE TO 0.
-	UNLOCK THROTTLE.
-	SET THROTTLE TO 0.
 	UNLOCK STEERING.
-	SET runmode TO 0.
+	SET THROTTLE TO 0.
 }
 
 function launch {
 	createdir("1:/lib").
-	copypath("0:/lib/node_circap.ks","1:/lib/").
-	copypath("0:/lib/dock_align.ks","1:/lib/").
+	copypath("0:/lib/ship_monitor.ks","lib/").
+	copypath("0:/lib/node_circ.ks","lib/").
+	copypath("0:/lib/node_exec.ks","lib/").
+	runoncepath("lib/ship_monitor.ks").
 
 	PRINT "Ship is on internal power.".
 	PRINT "Letting the booster do its job.".
 	
-	WAIT UNTIL SHIP:ALTITUDE > 70000.
-	WAIT 5.
+	WAIT UNTIL SHIP:STATUS = "ORBITING".
+	wait 30.
 	resetshipstate().
-	SET SHIP:NAME TO "Chen I".
+	SET SHIP:NAME TO "Chen III".
 	
 	STAGE.
 	WAIT 3.
 	panels on.
 
-	runpath("lib/node_circap.ks").
-	resetshipstate().
-	
-	pilotmode().
-	PRINT "We are now in orbit!".
-	
-	SET runmode TO 0.
+	copypath("0:/lib/rm_switch.ks","").
+	runpath("lib/rm_switch.ks").
+
 }
 
 IF SHIP:STATUS = "PRELAUNCH" {
 	launch().
 } ELSE {
-	PRINT "Ship is participating in unknown activities.".
+	runoncepath("lib/ship_monitor.ks").
+	runpath("lib/rm_switch.ks").
 }

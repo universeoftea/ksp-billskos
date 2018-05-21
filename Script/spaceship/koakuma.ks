@@ -21,7 +21,7 @@ function launch {
 	WAIT UNTIL SHIP:STATUS = "ORBITING".
 	wait 30.
 	resetshipstate().
-	SET SHIP:NAME TO "Chen III".
+	SET SHIP:NAME TO "Koakuma III".
 	
 	STAGE.
 	WAIT 3.
@@ -31,10 +31,14 @@ function launch {
 	runpath("lib/mun.ks").
 	runpath("lib/node_exec.ks").
 
+	deletepath("lib/mun.ks").
+	copypath("0:/lib/rm_switch.ks","lib/").
+	runpath("lib/rm_switch.ks").
 }
 
 IF SHIP:STATUS = "PRELAUNCH" {
 	launch().
 } ELSE {
-	PRINT "Ship is participating in unknown activities.".
+	runoncepath("lib/ship_monitor.ks").
+	runpath("lib/rm_switch.ks").
 }
