@@ -7,7 +7,7 @@
 // Parameters, change these as you please
 set LandObtAlt to 100000.
 if ship:name = "Reimu VH Booster" {
-	set deorbLng to 115.2. //-0.2
+	set deorbLng to 115.25. //+0.05
 	set deorbPe to 40000.
 } else {
 	set deorbLng to 126.2. //+0.2
