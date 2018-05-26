@@ -21,10 +21,10 @@ LOCK shipPos TO SHIP:GEOPOSITION.
 
 LOCK STEERING TO RETROGRADE.
 //Timewarp
-if shipPos:LNG < 90 or shipPos:LNG > deorbLng + 2
+if shipPos:LNG < 100 or shipPos:LNG > deorbLng + 2
 	set warpmode to "RAILS".
 	set warp to 50.
-	wait until shipPos:LNG > 90 and shipPos:LNG < deorbLng.
+	wait until shipPos:LNG > 100 and shipPos:LNG < deorbLng.
 	set warp to 0.
 
 WAIT UNTIL shipPos:LNG > deorbLng AND shipPos:LNG < deorbLng + 2.
