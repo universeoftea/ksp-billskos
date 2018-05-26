@@ -42,6 +42,8 @@ set warp to 0.
 set warpmode to "PHYSICS".
 set warp to 2.
 
+lock STEERING to SRFRETROGRADE.
+
 WAIT UNTIL SHIP:AIRSPEED < 420.
 CHUTESSAFE ON.
 WAIT UNTIL SHIP:AIRSPEED < 260.
