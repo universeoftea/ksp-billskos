@@ -13,6 +13,7 @@ function launch {
 	copypath("0:/lib/ship_monitor.ks","lib/").
 	copypath("0:/lib/node_circ.ks","lib/").
 	copypath("0:/lib/node_exec.ks","lib/").
+	copypath("0:/lib/rm_switch.ks","lib/").
 	runoncepath("lib/ship_monitor.ks").
 
 	PRINT "Ship is on internal power.".
@@ -27,7 +28,6 @@ function launch {
 	WAIT 3.
 	panels on.
 
-	copypath("0:/lib/rm_switch.ks","").
 	runpath("lib/rm_switch.ks").
 
 }
