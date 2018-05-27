@@ -8,10 +8,10 @@
 set LandObtAlt to 100000.
 if ship:name = "Reimu VH Booster" {
 	set deorbLng to 115.25. //+0.05
-	set deorbPe to 40000.
+	set deorbPe to 45000.
 } else {
 	set deorbLng to 127. //+0.8
-	set deorbPe to 40000.
+	set deorbPe to 45000.
 }
 
 GEAR OFF.
@@ -29,7 +29,7 @@ if shipPos:LNG < 100 or shipPos:LNG > deorbLng + 2
 
 WAIT UNTIL shipPos:LNG > deorbLng AND shipPos:LNG < deorbLng + 2.
 
-LOCK THROTTLE TO 1.
+LOCK THROTTLE TO 0.5.
 WAIT UNTIL SHIP:PERIAPSIS < deorbPe.
 LOCK THROTTLE TO 0.
 
