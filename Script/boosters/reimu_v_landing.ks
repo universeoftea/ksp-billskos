@@ -7,11 +7,13 @@
 // Parameters, change these as you please
 set LandObtAlt to 100000.
 if ship:name = "Reimu VH Booster" {
-	set deorbLng to 115.25. //+0.05
-	set deorbPe to 45000.
+	set deorbLng to 75. //+0.05
+	set deorbPe to 50000.
+	set timewarpLNG to 60.
 } else {
-	set deorbLng to 127. //+0.8
+	set deorbLng to 100. //+0.8
 	set deorbPe to 45000.
+	set timewarpLNG to 90.
 }
 
 GEAR OFF.
@@ -21,10 +23,10 @@ LOCK shipPos TO SHIP:GEOPOSITION.
 
 LOCK STEERING TO RETROGRADE.
 //Timewarp
-if shipPos:LNG < 100 or shipPos:LNG > deorbLng + 2
+if shipPos:LNG < timewarpLNG or shipPos:LNG > deorbLng + 2
 	set warpmode to "RAILS".
 	set warp to 50.
-	wait until shipPos:LNG > 100 and shipPos:LNG < deorbLng.
+	wait until shipPos:LNG > timewarpLNG and shipPos:LNG < deorbLng.
 	set warp to 0.
 
 WAIT UNTIL shipPos:LNG > deorbLng AND shipPos:LNG < deorbLng + 2.
