@@ -1,11 +1,10 @@
 function resetshipstate {
-	unlock STEERING.
 	SAS OFF.
 	RCS OFF.
 	BRAKES OFF.
-	UNLOCK THROTTLE.
-	SET THROTTLE TO 0.
 	SET SHIP:CONTROL:PILOTMAINTHROTTLE TO 0.
+	UNLOCK THROTTLE.
+	unlock STEERING.
 }
 function launch {
 	createdir("1:/lib").
