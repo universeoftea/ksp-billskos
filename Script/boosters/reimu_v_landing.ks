@@ -7,13 +7,15 @@
 // Parameters, change these as you please
 set LandObtAlt to 100000.
 if ship:name = "Reimu VH Booster" {
-	set deorbLng to 75. //+0.05
+	set deorbLng to 60. //-15
 	set deorbPe to 50000.
 	set timewarpLNG to 60.
+	set reentryspd to 1600.
 } else {
 	set deorbLng to 100. //+0.8
 	set deorbPe to 45000.
 	set timewarpLNG to 90.
+	set reentryspd to 1800.
 }
 
 GEAR OFF.
@@ -49,7 +51,7 @@ lock STEERING to SRFRETROGRADE.
 wait until SHIP:ALTITUDE < 30000.
 if SHIP:AIRSPEED > 1800 {
 	LOCK THROTTLE TO 1.
-	wait until SHIP:AIRSPEED < 1800.
+	wait until SHIP:AIRSPEED < reentryspd.
 	LOCK THROTTLE TO 0.
 }
 
