@@ -32,6 +32,9 @@ ELSE IF SHIP:NAME:CONTAINS("Wriggle I") {
 } else if ship:name:contains("Prismriver") {
 	copypath("0:/spaceship/prism.ks","").
 	runpath("prism.ks").
-} ELSE {
-	PRINT "Vessel is unknown to this bootscript.".
+} else if SHIP:STATUS = "PRELAUNCH" {
+	copypath("0:/spaceship/spaceship.ks","").
+	runpath("spaceship.ks").
+} else {
+	runpath("spaceship.ks").
 }

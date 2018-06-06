@@ -22,7 +22,15 @@ function launch {
 	WAIT until SHIP:STATUS = "ORBITING".
 	wait 30.
 	resetshipstate().
-	SET SHIP:NAME TO "Chen III".
+	
+	if SHIP:NAME:CONTAINS(" (Reimu V)") {
+		set newname to SHIP:NAME:REPLACE(" (Reimu V)", "").
+	} else if SHIP:NAME:CONTAINS(" (Reimu VH)") {
+		set newname to SHIP:NAME:REPLACE(" (Reimu VH)", "").
+	} else if SHIP:NAME:CONTAINS(" (Marisa)") {
+		set newname to SHIP:NAME:REPLACE(" (Marisa)", "").
+	}
+	set SHIP:NAME to newname.
 	
 	STAGE.
 	WAIT 3.

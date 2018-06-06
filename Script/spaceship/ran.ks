@@ -41,6 +41,7 @@ IF SHIP:STATUS = "PRELAUNCH" {
 	launch().
 } ELSE {
 	runoncepath("lib/ship_monitor.ks").
+	resetshipstate().
 	setrunmode(0).
 	runpath("lib/rm_switch.ks").
 }
