@@ -2,6 +2,9 @@
 //Executes the next upcoming node
 //Licenced under GPLv3
 
+// This should give us 50x timewarp?
+set warpspd to 4.
+
 logadd("Preparing to execute maneuver node").
 set execnode to nextnode.
 set dv0 to execnode:deltav:mag.
@@ -18,7 +21,7 @@ if nodeEta - targBurnTime/2 > 90 {
 	logadd("Eta is more than 90s").
 	logadd("Activating warp").
 	set warpmode to "RAILS".
-	set warp to 20.
+	set warp to warpspd.
 }
 until nodeEta - targBurnTime / 2 < 90 {
 	printshipstatus().
