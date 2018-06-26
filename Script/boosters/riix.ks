@@ -49,7 +49,7 @@ function launch {
 	}
 	
 	logadd("Initiating gravity turn.").
-	lock gturn to 90-arcsin(max(1,SHIP:ALTITUDE/35000)).
+	lock gturn to 90-arcsin(min(1,SHIP:ALTITUDE/35000)).
 	
 	until SHIP:ALTITUDE > 35000 {
 		logadd("Pitching to: " + gturn).
@@ -94,15 +94,12 @@ function launch {
 
 	//TODO: Could we make a library load/unload function for this?
 	logadd("Cleaning up unused files").
-	printshipstatus().
 	deletepath("lib/node_circ.ks").
 	deletepath("lib/node_exec.ks").
 	
-	logadd("Copying files needed for landing").
-	printshipstatus().
-	copypath("0:/boosters/reimu_v_landing.ks","").
 	logadd("Landing script will start on reload").
 	logadd("Have a nice flight").
+	resetshipstate().
 	printshipstatus().
 }
 
@@ -110,7 +107,7 @@ function landing {
 	
 	// Parameters, change these as you please
 	set LandObtAlt to 100000.
-	set deorbLNG to 130.
+	set deorbLNG to -160.
 	set deorbPe to 0.
 	set timewarpLNG to deorbLNG-15.
 	set reentryspd to 1000.
@@ -155,13 +152,15 @@ function landing {
 	
 	when SHIP:AIRSPEED < 420 then {
 		CHUTESSAFE ON.
+		WAIT 1.
+		CHUTESAFE OFF.
 	}
 	when SHIP:AIRSPEED < 260 then {
 		CHUTESSAFE ON.
 	}
 	
 	//More timewarp stuff
-	wait until ALT:RADAR < 500.
+	wait until ALT:RADAR < 1000.
 	set warp to 0.
 	wait 2.
 	
