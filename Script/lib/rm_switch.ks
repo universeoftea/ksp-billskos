@@ -18,6 +18,13 @@ function rm102 {
 	runpath("lib/node_circ.ks","pe").
 	rm100().
 }
+function rm200 {
+	setrunmode(200).
+	printshipstatus().
+	copypath("0:/lib/mun.ks","lib/").
+	runpath("lib/mun.ks").
+	rm100().
+}
 	
 	
 until false {
@@ -33,5 +40,8 @@ until false {
 	} else if AG8 and not shipcfg["runmode"] = 102 {
 		AG8 OFF.
 		rm102().
+	} else if AG1 and not shipcfg["runmode"] = 200 {
+		AG1 OFF.
+		rm200().
 	}
 }
