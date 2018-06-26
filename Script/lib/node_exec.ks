@@ -34,17 +34,17 @@ until nodeEta < targBurnTime / 2 {
 	wait 0.5.
 }
 logadd("Starting burn").
-if nodeDeltaV > 10 {
+if nodeDeltaV > 15 {
 	lock THROTTLE to 1.
 	
-	until nodeDeltaV < 10 {
+	until nodeDeltaV < 15 {
 		printshipstatus().
 	}
 }
 
 //Try to only do 2m/ss of acceleration for the last 15m/s (or max if acc is less than that)
 lock THROTTLE TO min(1,2/max_acc).
-wait until nodeDeltaV < 0.55555.
+wait until nodeDeltaV < 0.8.
 
 //Same, but 0.1m/ss for the last bit
 lock THROTTLE TO min(1,0.1/max_acc).
