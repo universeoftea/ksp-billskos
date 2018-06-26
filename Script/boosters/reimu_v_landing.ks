@@ -27,7 +27,7 @@ LOCK STEERING TO RETROGRADE.
 //Timewarp
 if shipPos:LNG < timewarpLNG or shipPos:LNG > deorbLng + 2
 	set warpmode to "RAILS".
-	set warp to 50.
+	set warp to 3.
 	wait until shipPos:LNG > timewarpLNG and shipPos:LNG < deorbLng.
 	set warp to 0.
 
@@ -40,7 +40,7 @@ LOCK THROTTLE TO 0.
 //Timewarp
 wait 5.
 set warpmode to "RAILS".
-set warp to 50.
+set warp to 3.
 wait until ship:altitude < 75000.
 set warp to 0.
 set warpmode to "PHYSICS".

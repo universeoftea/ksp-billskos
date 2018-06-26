@@ -42,17 +42,9 @@ function launch {
 		printshipstatus().
 		wait 0.5.
 	}
-	
+
 	logadd("Initiating gravity turn.").
-	lock gturn to 90-arcsin(SHIP:ALTITUDE/35000).
-	
-	until SHIP:ALTITUDE > 33000 {
-		logadd("Pitching to: " + gturn).
-		printshipstatus().
-		wait 0.3.
-	}
-	lock gturn to 0.
-	logadd("Pitching to: " + gturn).
+	lock gturn to 90-arcsin(min(1,SHIP:ALTITUDE/35000)).
 	
 	UNTIL SHIP:APOAPSIS > 90000 {
 		printshipstatus().
