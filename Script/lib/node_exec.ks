@@ -3,7 +3,7 @@
 //Licenced under GPLv3
 
 // This should give us 50x timewarp?
-set warpspd to 4.
+set warpspd to 3.
 
 logadd("Preparing to execute maneuver node").
 set execnode to nextnode.
