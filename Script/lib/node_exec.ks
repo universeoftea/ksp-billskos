@@ -3,7 +3,7 @@
 //Licenced under GPLv3
 
 // This should give us 50x timewarp?
-set warpspd to 3.
+set warpspd to 8.
 
 logadd("Preparing to execute maneuver node").
 set execnode to nextnode.
@@ -20,6 +20,7 @@ lock steering to execnode:deltav.
 if nodeEta - targBurnTime/2 > 90 {
 	logadd("Eta is more than 90s").
 	logadd("Activating warp").
+	set nodeAlarm to addAlarm("Maneuver",TIME:SECONDS + nodeEta - (targBurnTime/2 + 90),SHIP:NAME + " CPU:Node","Created by flight computer on " + SHIP:NAME).
 	set warpmode to "RAILS".
 	set warp to warpspd.
 }
@@ -27,7 +28,6 @@ until nodeEta - targBurnTime / 2 < 90 {
 	printshipstatus().
 	wait 0.5.
 }
-set warp to 0.
 
 until nodeEta < targBurnTime / 2 {
 	printshipstatus().
