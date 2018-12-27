@@ -53,3 +53,4 @@ lock THROTTLE TO 0.
 unlock STEERING.
 remove execnode.
 logadd("Finished executing node, removing it").
+resetshipstate().

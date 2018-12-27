@@ -12,10 +12,10 @@ if ship:name = "Reimu VH Booster" {
 	set timewarpLNG to 45.
 	set reentryspd to 1500.
 } else {
-	set deorbLng to 95. //-5
+	set deorbLng to 96. //+0.2
 	set deorbPe to 45000.
 	set timewarpLNG to 85.
-	set reentryspd to 1900. //+100
+	set reentryspd to 1850. //-50
 }
 
 GEAR OFF.

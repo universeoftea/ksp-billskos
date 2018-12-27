@@ -17,4 +17,5 @@ IF SHIP:NAME:CONTAINS("Reimu IV") AND SHIP:STATUS = "PRELAUNCH" {
 } ELSE {
 	PRINT "Unknown shiptype/launcher".
 	PRINT "Will not boot any script".
+	PRINT "If unexpected, check vehicle status".
 }

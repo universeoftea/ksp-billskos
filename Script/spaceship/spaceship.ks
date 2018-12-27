@@ -16,10 +16,16 @@ function launch {
 	copypath("0:/lib/rm_switch.ks","lib/").
 	runoncepath("lib/ship_monitor.ks").
 
-	PRINT "Ship is on internal power.".
-	PRINT "Letting the booster do its job.".
-	
-	WAIT until SHIP:STATUS = "ORBITING".
+	if SHIP:NAME:CONTAINS("(Marisa)") {
+		copypath("0:/boosters/marisa.ks","").
+		runpath(marisa).
+		deletepath("marisa.ks").
+	} else {
+		PRINT "Ship is on internal power.".
+		PRINT "Letting the booster do its job.".
+		WAIT until SHIP:STATUS = "ORBITING".
+	}
+
 	wait 30.
 	resetshipstate().
 	
@@ -35,8 +41,13 @@ function launch {
 	STAGE.
 	WAIT 3.
 	panels on.
-
-	runpath("lib/rm_switch.ks").
+	
+	if SHIP:NAME = "Ran C" {
+		runpath("lib/rm_switch.ks",200).
+		runpath("lib/rm_switch.ks",0).
+	} else {
+		runpath("lib/rm_switch.ks",0).
+	}
 
 }
 
@@ -45,5 +56,5 @@ if SHIP:STATUS = "PRELAUNCH" {
 } else {
 	runoncepath("lib/ship_monitor.ks").
 	resetshipstate().
-	runpath("lib/rm_switch.ks").
+	runpath("lib/rm_switch.ks",0).
 }

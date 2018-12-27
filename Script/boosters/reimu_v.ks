@@ -7,8 +7,9 @@ function resetshipstate {
 	BRAKES OFF.
 	set THROTTLE to 0.
 	set SHIP:CONTROL:PILOTMAINTHROTTLE to 0.
-	unlock STEERING.
-	UNLOCK THROTTLE.
+	unlock ALL.
+//	unlock STEERING.
+//	UNLOCK THROTTLE.
 }
 
 function launch {
