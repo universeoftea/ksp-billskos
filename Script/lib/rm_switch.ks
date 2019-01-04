@@ -1,24 +1,24 @@
 parameter switchtorunmode.
 
-function rm100 {
+function rm101 {
 	resetshipstate().
-	setrunmode(100).
+	setrunmode(101).
 	printshipstatus().
 	runpath("lib/node_exec.ks").
 	resetshipstate().
 	setrunmode(0).
 }
-function rm101 {
-	setrunmode(101).
+function rm110 {
+	setrunmode(110).
 	printshipstatus().
 	runpath("lib/node_circ.ks","ap").
-	rm100().
+	rm101().
 }
-function rm102 {
-	setrunmode(102).
+function rm111 {
+	setrunmode(111).
 	printshipstatus().
 	runpath("lib/node_circ.ks","pe").
-	rm100().
+	rm101().
 }
 function rm200 {
 	setrunmode(200).
@@ -26,10 +26,7 @@ function rm200 {
 	copypath("0:/lib/mun.ks","lib/").
 	runoncepath("lib/mun.ks").
 	rm201().
-	rm100().
 	rm202().
-	rm210().
-	rm102().
 }
 	
 function rm0 {	
@@ -37,15 +34,15 @@ function rm0 {
 		printshipstatus().
 		wait 1.
 		
-		if AG10 and not shipcfg["runmode"] = 100 {
+		if AG10 or shipcfg["runmode"] = 101 {
 			AG10 OFF.
-			rm100().
-		} else if AG9 and not shipcfg["runmode"] = 101 {
-			AG9 OFF.
 			rm101().
-		} else if AG8 and not shipcfg["runmode"] = 102 {
+		} else if AG9 or shipcfg["runmode"] = 110 {
+			AG9 OFF.
+			rm110().
+		} else if AG8 or shipcfg["runmode"] = 111 {
 			AG8 OFF.
-			rm102().
+			rm111().
 		}
 	}
 }

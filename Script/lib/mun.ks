@@ -39,6 +39,8 @@ function rm201 {
 	
 	set H1Node to NODE(TIME:SECONDS+timetoang,0,0,deltaV).
 	add H1Node.
+
+	rm101().
 }
 
 function rm202 {
@@ -58,6 +60,8 @@ function rm202 {
 		set SHIP:CONTROL:FORE to 0.
 	}
 	RCS OFF.
+
+	rm210().
 }
 
 function rm210 {
@@ -68,4 +72,6 @@ function rm210 {
 	wait until SHIP:ALTITUDE > 300000.
 	set warp to 8.
 	wait until SHIP:ORBIT:BODY:NAME = "Mun".
+
+	rm111().
 }	

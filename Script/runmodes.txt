@@ -2,10 +2,14 @@
 0 - Pilot or Manual control
 1 - 
 
-10-99 Booster launch & landing
+10-20 Spaceship booster launch
 10 - Spaceship prelaunch, booster stage in control of countdown
 11 - Spaceship flying, booster stage in control
-12 - Spaceship suborbital, waiting for circularization at Ap
+12 - Spaceship suborbital, waiting for circularization at Ap, booster stage in control
+
+15 - Abort mode 15, Launchpad abort
+16 - Abort mode 16, Downrange abort
+17 - Abort mode 17, Suborbital abort
 
 100-199 Standard orbital Maneuvers (In same SOI)
 100 - In orbit
@@ -13,7 +17,7 @@
 102 - Maneuvering into position for Node burn (waiting for Node ETA)
 
 110 - Creating node for Circularizing at Ap
-111 - Burning for circularization at Ap
+111 - Creating node for Circularizing at Pe
 
 200-249 Mun transfer,capture & landing
 200 - Initializing Automatic transfer to Mun

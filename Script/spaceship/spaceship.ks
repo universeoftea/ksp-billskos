@@ -42,7 +42,7 @@ function launch {
 	WAIT 3.
 	panels on.
 	
-	if SHIP:NAME = "Ran C" {
+	if SHIP:NAME:CONTAINS = "dest:Mun" {
 		runpath("lib/rm_switch.ks",200).
 		runpath("lib/rm_switch.ks",0).
 	} else {
