@@ -24,8 +24,12 @@ function rm200 {
 	setrunmode(200).
 	printshipstatus().
 	copypath("0:/lib/mun.ks","lib/").
-	runpath("lib/mun.ks").
+	runoncepath("lib/mun.ks").
+	rm201().
 	rm100().
+	rm202().
+	rm210().
+	rm102().
 }
 	
 function rm0 {	
